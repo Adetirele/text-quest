@@ -41,5 +41,5 @@ Question and answer based gameplay in the terminal.
 - Week N (Final)
   1. Implement all visual aides
   2. Implement typo recovery
-
   3. Debug
+
