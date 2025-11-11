@@ -10,11 +10,11 @@ Text Quest is a text based game that will teach kids about the very basics of co
 
 ## Features
 ### Feature 1
-A pop up window where the game will be displayed. 
+A pop up window where the game will be displayed. I'll need a game loop, event loop, render, display, and update logic.
 ### Feature 2
-Visual aides displayed in the pop up window.
+Visual aides displayed in the pop up window.  I'll need to put all my visual aides in the source folder and I'll need to use blit to display my images.
 ### Feature N 
-Interactive question and answer based gameplay.
+Interactive question and answer based gameplay. I'll need print functions and nested functions to account for correct and incorrect answers.
 
 ## Challenges
 I'll have to go back to the basics and decide excactly what basics the game will include.
@@ -41,4 +41,5 @@ Question and answer based gameplay in the terminal.
 - Week N (Final)
   1. Implement all visual aides
   2. Implement typo recovery
+
   3. Debug
