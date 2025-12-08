@@ -210,7 +210,7 @@ class TextQuestGame:
             self.correct_answered = False
             self.feedback_text = lesson["wrong_msg"]
             self.feedback_color = FEEDBACK_BAD
-            
+
     def advance_lesson(self):
         """Move to next lesson or end if finished."""
         self.lesson_index += 1
@@ -219,6 +219,42 @@ class TextQuestGame:
         self.feedback_color = TEXT_COLOR
         if self.lesson_index >= len(LESSONS):
             self.state = "end"
+
+    def update(self, dt):
+        pass
+    def render(self):
+        """Draw current state."""
+        if self.state == "intro":
+            self.render_intro()
+        elif self.state == "lesson":
+            self.render_lesson()
+        elif self.state == "end":
+            self.render_end()
+        pygame.display.flip()
+
+    def render_intro(self):
+        # Background
+        if self.intro_img:
+            self.screen.blit(self.intro_img, (0, 0))
+        else:
+            self.screen.fill((240, 240, 240))
+
+    def render_lesson(self):
+        # Background with teaching pyhtonious
+        if self.teach_img:
+            self.screen.blit(self.teach_img, (0, 0))
+        else:
+            self.screen.fill((255, 255, 255))
+
+        # Lesson title
+        lesson = LESSONS[self.lesson_index]
+        title_text = f"Lesson {self.lesson_index + 1}: {lesson['title']}"
+        title_img = self.title_font.render(title_text, True, TEXT_COLOR)
+        self.screen.blit(title_img, (LEFT_TEXT_X, LEFT_TEXT_Y))
+
+        # Body text wrapped to left area to avoid overlapping my knight
+        render_wrapped(self.screen, lesson["body"], self.body_font, TEXT_COLOR,
+                       LEFT_TEXT_X, LEFT_TEXT_Y + 50, LEFT_TEXT_MAX_WIDTH)    
 
 def main():
     game = TextQuestGame()
