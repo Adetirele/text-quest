@@ -141,6 +141,9 @@ class TextQuestGame:
         self.feedback_text = ""       # shows right/wrong feedback
         self.feedback_color = TEXT_COLOR
 
+        # Score tracking (if i feel like it, might delete)__________________________________________________________
+        self.score = 0
+
     def safe_load_image(self, path):
         try:
             img = pygame.image.load(path).convert_alpha()
@@ -151,9 +154,49 @@ class TextQuestGame:
         except Exception:
             # If ucant find the image, fill the background later
             return None
+        
+    def run(self):
+        """Main loop."""
+        while True:
+            dt = self.clock.tick(FPS) / 1000.0
+            if not self.handle_events():
+                pygame.quit()
+                sys.exit()
+            self.update(dt)
+            self.render()
 
-        # Score tracking (if i feel like it, might delete)
-        self.score = 0
+    def handle_events(self):
+        """Event loop: quit, Esc, and key input."""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    return False
+                self.handle_key(event.key)
+        return True        
+        
+    def handle_key(self, key):
+        """Keyboard rules per state."""
+        if self.state == "intro":
+            # Any key starts the lessons
+            self.state = "lesson"
+            self.correct_answered = False
+            self.feedback_text = ""
+            self.feedback_color = TEXT_COLOR
+            return  
+          
+        if self.state == "lesson":
+            lesson = LESSONS[self.lesson_index]
+            # Only A/B keys count for answers
+            if key == pygame.K_a:
+                self.process_answer("A", lesson)
+            elif key == pygame.K_b:
+                self.process_answer("B", lesson)
+            # Spacebar advances only if correct answer was given
+            elif key == pygame.K_SPACE and self.correct_answered:
+                self.advance_lesson()
+
 
 
 def main():
