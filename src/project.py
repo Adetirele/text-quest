@@ -115,6 +115,35 @@ def render_wrapped(surface, text, font, color, x, y, max_width, line_spacing=6):
         surface.blit(img, (x, cursor_y))
         cursor_y += img.get_height() + line_spacing
 
+#the "game" part of the game
+class TextQuestGame:
+    def __init__(self):
+        pygame.init()
+        pygame.display.set_caption("Text Quest")
+        self.screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+        self.clock = pygame.time.Clock()
+
+        # Load assets (scaled to window if nned be)
+        self.intro_img = self.safe_load_image(INTRO_IMAGE_PATH)
+        self.teach_img = self.safe_load_image(TEACH_IMAGE_PATH)
+        self.end_img = self.safe_load_image(END_IMAGE_PATH)
+
+        # Load font (yummy quest font)
+        # Size 24 for body; 30 for headings, perhaps change later
+        self.body_font = pygame.font.Font(QUEST_FONT_PATH, 24)
+        self.title_font = pygame.font.Font(QUEST_FONT_PATH, 30)
+        self.feedback_font = pygame.font.Font(QUEST_FONT_PATH, 24)
+
+        # Game state
+        self.state = "intro"          # intro, 4 lessons, end screenn
+        self.lesson_index = 0
+        self.correct_answered = False # spacebar only works after correct answer!!!!!!
+        self.feedback_text = ""       # shows right/wrong feedback
+        self.feedback_color = TEXT_COLOR
+
+        # Score tracking (if i feel like it)
+        self.score = 0
+
 
 def main():
     game = TextQuestGame()
