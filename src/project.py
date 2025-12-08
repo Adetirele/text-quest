@@ -41,14 +41,14 @@ LESSONS = [
     {
         "title": "Functions",
         "body": (
-            "A function is an action that the program you’re using to code already knows how to execute! Ah, I have a friend who is an executioner…\n"
+            "A function is an action that the program you’re using to code already knows how to execute! Ah, I have a friend who is an executioner...\n"
             "Anyways, you can call a function by invoking it with parentheses. For example, to type text on screen, use the “print” function, which looks like this:\n"
             "print()\n"
             "To make our print function actually DO something, we put an argument inside the function’s parentheses, like this:\n"
-            "print(\"Huzzah!\")\n"
+            "print(\“Huzzah!\”)\n"
             "However, not every function is created equal. Some functions can only have certain kinds of arguments in them.\n\n"
             "What is the correct way to use a print function?\n"
-            "A: Print(Huzzah!)    B: print(\"Huzzah!\")"
+            "A: Print(Huzzah!)    B: print(\“Huzzah!\”)"
         ),
         "correct": "B",
         "right_msg": "Protinus! Answer B is correct. Onwards! Press the spacebar to continue to the next lesson!",
@@ -61,7 +61,7 @@ LESSONS = [
             "I will be succeeded by my daughter, Pythonia the 4th. She is unyielding in battle!\n"
             "Ahem. Back to the lesson.\n"
             "An assignment operator gives value to variables. Here’s how to use one:\n"
-            "name = input()\n"
+            "name=input()\n"
             "“name” is the name of the variable and the equals sign is the assignment operator.\n\n"
             "What do variables do in programming languages?\n"
             "A: Hold a program’s data    B: Constantly change"
@@ -77,7 +77,7 @@ LESSONS = [
             "which are building blocks already given to you by the programming language you’re using. These include:\n"
             "Integers (int): whole numbers without decimal points (ex: 5, -100)\n"
             "Floating-point numbers (float): numbers with decimal points (ex: 3.14, -0.5)\n"
-            "Characters (char): single letters, symbols, or numbers (e.g., 'A', '$', '7')\n"
+            "Characters (char): single letters, symbols, or numbers (e.g., 'A', '?', '7')\n"
             "Booleans (bool): true or false values.\n"
             "These data types are in their simplest form, and they help the computer understand what you mean when you code.\n\n"
             "What is an example of a data type?\n"
