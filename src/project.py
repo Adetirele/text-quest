@@ -196,7 +196,29 @@ class TextQuestGame:
             # Spacebar advances only if correct answer was given
             elif key == pygame.K_SPACE and self.correct_answered:
                 self.advance_lesson()
+        elif self.state == "end":
+            pass
 
+    def process_answer(self, choice, lesson):
+        """Check answer and set feedback; lhlat progression until answer is right!!"""
+        if choice == lesson["correct"]:
+            self.correct_answered = True
+            self.feedback_text = lesson["right_msg"]
+            self.feedback_color = FEEDBACK_GOOD
+            self.score += 1
+        else:
+            self.correct_answered = False
+            self.feedback_text = lesson["wrong_msg"]
+            self.feedback_color = FEEDBACK_BAD
+            
+    def advance_lesson(self):
+        """Move to next lesson or end if finished."""
+        self.lesson_index += 1
+        self.correct_answered = False
+        self.feedback_text = ""
+        self.feedback_color = TEXT_COLOR
+        if self.lesson_index >= len(LESSONS):
+            self.state = "end"
 
 def main():
     game = TextQuestGame()
