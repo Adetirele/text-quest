@@ -13,7 +13,7 @@ LEFT_TEXT_MAX_WIDTH = 380 # keep text on left half (avoid right-side knight)
 INTRO_IMAGE_PATH = "TQ_intro.png"
 TEACH_IMAGE_PATH = "TQ_teach.png"
 END_IMAGE_PATH   = "TQ_end.png"
-QUEST_FONT_PATH  = "quest_font.ttf"
+QUEST_PATH  = "quest.ttf"
 
 TEXT_COLOR = (0, 0, 0)      # black text
 FEEDBACK_GOOD = (40, 150, 60)
@@ -130,9 +130,9 @@ class TextQuestGame:
 
         # Load font (yummy quest font)
         # Size 24 for body; 30 for headings, perhaps change later
-        self.body_font = pygame.font.Font(QUEST_FONT_PATH, 24)
-        self.title_font = pygame.font.Font(QUEST_FONT_PATH, 30)
-        self.feedback_font = pygame.font.Font(QUEST_FONT_PATH, 24)
+        self.body_font = pygame.font.Font(QUEST_PATH, 24)
+        self.title_font = pygame.font.Font(QUEST_PATH, 30)
+        self.feedback_font = pygame.font.Font(QUEST_PATH, 24)
 
         # Game state
         self.state = "intro"          # intro, 4 lessons, end screenn
@@ -196,7 +196,6 @@ class TextQuestGame:
             # Spacebar advances only if correct answer was given
             elif key == pygame.K_SPACE and self.correct_answered:
                 self.advance_lesson()
-
 
 
 def main():
