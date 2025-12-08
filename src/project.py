@@ -10,9 +10,9 @@ LEFT_TEXT_X = 28          # left padding for text
 LEFT_TEXT_Y = 40          # top padding for text
 LEFT_TEXT_MAX_WIDTH = 380 # keep text on left half (avoid right-side knight)
 
-INTRO_IMAGE_PATH = "TQ_intro.png"
-TEACH_IMAGE_PATH = "TQ_teach.png"
-END_IMAGE_PATH   = "TQ_end.png"
+INTRO_IMAGE_PATH = "TQ Intro.png"
+TEACH_IMAGE_PATH = "TQ Teach.png"
+END_IMAGE_PATH   = "TQ End.png"
 QUEST_PATH  = "quest.ttf"
 
 TEXT_COLOR = (0, 0, 0)      # black text
@@ -255,7 +255,39 @@ class TextQuestGame:
         # Body text wrapped to left area to avoid overlapping my knight
         render_wrapped(self.screen, lesson["body"], self.body_font, TEXT_COLOR,
                        LEFT_TEXT_X, LEFT_TEXT_Y + 50, LEFT_TEXT_MAX_WIDTH)    
+        
+        # Feedback text (shows right/wrong messages)
+        if self.feedback_text:
+            render_wrapped(self.screen, self.feedback_text, self.feedback_font, self.feedback_color,
+                           LEFT_TEXT_X, WINDOW_HEIGHT - 120, LEFT_TEXT_MAX_WIDTH)
 
+        # Bottom hint: spacebar rule (only if correct)
+        hint = "Press SPACE to continue" if self.correct_answered else "Answer with A or B"
+        hint_img = self.body_font.render(hint, True, TEXT_COLOR)
+        self.screen.blit(hint_img, (LEFT_TEXT_X, WINDOW_HEIGHT - 60))
+
+        # Optional score display
+        score_msg = f"Score: {self.score}/{len(LESSONS)}"
+        score_img = self.body_font.render(score_msg, True, TEXT_COLOR)
+        self.screen.blit(score_img, (WINDOW_WIDTH - 180, 20))
+
+    def render_end(self):
+        # Background
+        if self.end_img:
+            self.screen.blit(self.end_img, (0, 0))
+        else:
+            self.screen.fill((230, 230, 240))
+
+        # Farewell text
+        end_title = self.title_font.render("Quest Complete!", True, TEXT_COLOR)
+        self.screen.blit(end_title, (LEFT_TEXT_X, LEFT_TEXT_Y))
+
+        summary = (
+            f"Final score: {self.score}/{len(LESSONS)}\n"
+        )
+        render_wrapped(self.screen, summary, self.body_font, TEXT_COLOR,
+                       LEFT_TEXT_X, LEFT_TEXT_Y + 60, LEFT_TEXT_MAX_WIDTH)    
+#main function
 def main():
     game = TextQuestGame()
     game.run()
