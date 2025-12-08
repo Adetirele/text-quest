@@ -130,9 +130,9 @@ class TextQuestGame:
 
         # Load font (yummy quest font)
         # Size 24 for body; 30 for headings, perhaps change later
-        self.body_font = pygame.font.Font(QUEST_PATH, 24)
-        self.title_font = pygame.font.Font(QUEST_PATH, 30)
-        self.feedback_font = pygame.font.Font(QUEST_PATH, 24)
+        self.body_font = pygame.font.Font(QUEST_PATH, 15)
+        self.title_font = pygame.font.Font(QUEST_PATH, 24)
+        self.feedback_font = pygame.font.Font(QUEST_PATH, 15)
 
         # Game state
         self.state = "intro"          # intro, 4 lessons, end screenn
@@ -278,15 +278,15 @@ class TextQuestGame:
         else:
             self.screen.fill((230, 230, 240))
 
-        # Farewell text
-        end_title = self.title_font.render("Quest Complete!", True, TEXT_COLOR)
-        self.screen.blit(end_title, (LEFT_TEXT_X, LEFT_TEXT_Y))
+        # Farewell text!!!! sad to see u go
+        combined_text = f"Quest Complete!   Final score: {self.score}/{len(LESSONS)}"
+        combined_img = self.title_font.render(combined_text, True, TEXT_COLOR)
+        combined_rect = combined_img.get_rect()
+        combined_rect.centerx = WINDOW_WIDTH // 2
+        combined_rect.y = LEFT_TEXT_Y  
+        self.screen.blit(combined_img, combined_rect)
 
-        summary = (
-            f"Final score: {self.score}/{len(LESSONS)}\n"
-        )
-        render_wrapped(self.screen, summary, self.body_font, TEXT_COLOR,
-                       LEFT_TEXT_X, LEFT_TEXT_Y + 60, LEFT_TEXT_MAX_WIDTH)    
+
 #main function
 def main():
     game = TextQuestGame()
