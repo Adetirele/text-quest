@@ -12,7 +12,7 @@ Text Quest is a text based game that will teach kids about the very basics of co
 ### Feature 1
 A pop up window where the game will be displayed. I'll need a game loop, event loop, render, display, and update logic.
 ### Feature 2
-Visual aides displayed in the pop up window. I'll need to put all my visual aides in the source folder and I'll need to use blit to display my images.
+Visual aides displayed in the pop up window.  I'll need to put all my visual aides in the source folder and I'll need to use blit to display my images.
 ### Feature N 
 Interactive question and answer based gameplay. I'll need print functions and nested functions to account for correct and incorrect answers.
 
