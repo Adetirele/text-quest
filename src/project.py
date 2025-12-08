@@ -10,10 +10,10 @@ LEFT_TEXT_X = 28          # left padding for text
 LEFT_TEXT_Y = 40          # top padding for text
 LEFT_TEXT_MAX_WIDTH = 380 # keep text on left half (avoid right-side knight)
 
-INTRO_IMAGE_PATH = "src/assets/TQ_intro.png"
-TEACH_IMAGE_PATH = "src/assets/TQ_teach.png"
-END_IMAGE_PATH   = "src/assets/TQ_end.png"
-QUEST_FONT_PATH  = "src/assets/quest_font.ttf"
+INTRO_IMAGE_PATH = "TQ_intro.png"
+TEACH_IMAGE_PATH = "TQ_teach.png"
+END_IMAGE_PATH   = "TQ_end.png"
+QUEST_FONT_PATH  = "quest_font.ttf"
 
 TEXT_COLOR = (0, 0, 0)      # black text
 FEEDBACK_GOOD = (40, 150, 60)
@@ -141,7 +141,18 @@ class TextQuestGame:
         self.feedback_text = ""       # shows right/wrong feedback
         self.feedback_color = TEXT_COLOR
 
-        # Score tracking (if i feel like it)
+    def safe_load_image(self, path):
+        try:
+            img = pygame.image.load(path).convert_alpha()
+            # If my image is the wrong size itll scale to the popup window
+            if img.get_size() != (WINDOW_WIDTH, WINDOW_HEIGHT):
+                img = pygame.transform.smoothscale(img, (WINDOW_WIDTH, WINDOW_HEIGHT))
+            return img
+        except Exception:
+            # If ucant find the image, fill the background later
+            return None
+
+        # Score tracking (if i feel like it, might delete)
         self.score = 0
 
 
