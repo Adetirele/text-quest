@@ -8,7 +8,7 @@ FPS = 60
 
 LEFT_TEXT_X = 28          # left padding for text
 LEFT_TEXT_Y = 40          # top padding for text
-LEFT_TEXT_MAX_WIDTH = 380 # keep text on left half (avoid right-side art)
+LEFT_TEXT_MAX_WIDTH = 380 # keep text on left half (avoid right-side knight)
 
 INTRO_IMAGE_PATH = "src/assets/TQ_intro.png"
 TEACH_IMAGE_PATH = "src/assets/TQ_teach.png"
@@ -88,6 +88,33 @@ LESSONS = [
         "wrong_msg": "Hexes! That’s not right—but that’s ok! Re-read the lesson and try again!"
     }
 ]
+
+#make my text look goooooooood
+def wrap_text(text, font, max_width):
+    lines = []
+    for paragraph in text.split("\n"):
+        words = paragraph.split(" ")
+        current = ""
+        for w in words:
+            test = (current + " " + w) if current else w
+            if font.size(test)[0] <= max_width:
+                current = test
+            else:
+                if current:
+                    lines.append(current)
+                current = w
+        if current:
+            lines.append(current)
+    return lines
+
+def render_wrapped(surface, text, font, color, x, y, max_width, line_spacing=6):
+    lines = wrap_text(text, font, max_width)
+    cursor_y = y
+    for line in lines:
+        img = font.render(line, True, color)
+        surface.blit(img, (x, cursor_y))
+        cursor_y += img.get_height() + line_spacing
+
 
 def main():
     game = TextQuestGame()
