@@ -215,10 +215,12 @@ class TextQuestGame:
             self.feedback_text = lesson["right_msg"]
             self.feedback_color = FEEDBACK_GOOD
             self.score += 1
+            self.correct_sound.play()
         else:
             self.correct_answered = False
             self.feedback_text = lesson["wrong_msg"]
             self.feedback_color = FEEDBACK_BAD
+            self.wrong_sound.play()
 
     def advance_lesson(self):
         """Move to next lesson or end if finished."""
@@ -294,6 +296,12 @@ class TextQuestGame:
         combined_rect.centerx = WINDOW_WIDTH // 2
         combined_rect.y = LEFT_TEXT_Y  
         self.screen.blit(combined_img, combined_rect)
+
+        if not pygame.mixer.get_busy():
+            if self.score >= 3:
+                self.final_good_sound.play()
+            else:
+                self.final_bad_sound.play()
 
 
 #main function
