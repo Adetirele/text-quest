@@ -290,7 +290,7 @@ class TextQuestGame:
         # Feedback text (shows right/wrong messages)
         if self.feedback_text:
             render_wrapped(self.screen, self.feedback_text, self.feedback_font, self.feedback_color,
-                           LEFT_TEXT_X, WINDOW_HEIGHT - 120, LEFT_TEXT_MAX_WIDTH)
+                           LEFT_TEXT_X, WINDOW_HEIGHT - 100, LEFT_TEXT_MAX_WIDTH)
 
         # Bottom hint: spacebar rule (only if correct)
         hint = "Press SPACE to continue" if self.correct_answered else "Answer with A or B"
@@ -322,6 +322,7 @@ class TextQuestGame:
                 self.final_good_sound.play()
             else:
                 self.final_bad_sound.play()
+            self.played_final_sound = True
 
 
 #main function
