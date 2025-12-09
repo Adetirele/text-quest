@@ -148,7 +148,8 @@ class TextQuestGame:
         self.correct_sound = pygame.mixer.Sound("correct fanfare.wav")
         self.wrong_sound = pygame.mixer.Sound("incorrect sword clash.wav")
         self.final_good_sound = pygame.mixer.Sound("final fanfare good.wav")
-        self.final_bad_sound = pygame.mixer.Sound("final fanfare bad.wav")        
+        self.final_bad_sound = pygame.mixer.Sound("final fanfare bad.wav") 
+        self.played_intro_sound = False       
 
         # Game state
         self.state = "intro"          # intro, 4 lessons, end screenn
@@ -256,6 +257,10 @@ class TextQuestGame:
             self.screen.blit(self.intro_img, (0, 0))
         else:
             self.screen.fill((240, 240, 240))
+
+        if not self.played_intro_sound:
+            self.intro_sound.play()
+            self.played_intro_sound = True
 
     def render_lesson(self):
         # Background with teaching pyhtonious
