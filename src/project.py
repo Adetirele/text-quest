@@ -17,11 +17,11 @@ END_IMAGE_PATH   = "TQ End.png"
 QUEST_PATH  = "quest.ttf"
 
 #soundz
-INTRO_SOUND_PATH = "intro fanfare.mp3"
-CORRECT_SOUND_PATH = "correct fanfare.mp3"
-WRONG_SOUND_PATH = "incorrect sword clash.mp3"
-FINAL_GOOD_SOUND_PATH = "final fanfare good.mp3"
-FINAL_BAD_SOUND_PATH = "final fanfare bad.mp3"
+INTRO_SOUND_PATH = "intro fanfare.wav"
+CORRECT_SOUND_PATH = "correct fanfare.wav"
+WRONG_SOUND_PATH = "incorrect sword clash.wav"
+FINAL_GOOD_SOUND_PATH = "final fanfare good.wav"
+FINAL_BAD_SOUND_PATH = "final fanfare bad.wav"
 
 TEXT_COLOR = (0, 0, 0)      # black text
 FEEDBACK_GOOD = (40, 150, 60)
@@ -144,11 +144,11 @@ class TextQuestGame:
         self.feedback_font = pygame.font.Font(QUEST_PATH, 15)
 
         # Load silly sounds
-        self.intro_sound = pygame.mixer.Sound("intro fanfare.mp3")
-        self.correct_sound = pygame.mixer.Sound("correct fanfare.mp3")
-        self.wrong_sound = pygame.mixer.Sound("incorrect sword clash.mp3")
-        self.final_good_sound = pygame.mixer.Sound("final fanfare good.mp3")
-        self.final_bad_sound = pygame.mixer.Sound("final fanfare bad.mp3")        
+        self.intro_sound = pygame.mixer.Sound("intro fanfare.wav")
+        self.correct_sound = pygame.mixer.Sound("correct fanfare.wav")
+        self.wrong_sound = pygame.mixer.Sound("incorrect sword clash.wav")
+        self.final_good_sound = pygame.mixer.Sound("final fanfare good.wav")
+        self.final_bad_sound = pygame.mixer.Sound("final fanfare bad.wav")        
 
         # Game state
         self.state = "intro"          # intro, 4 lessons, end screenn
