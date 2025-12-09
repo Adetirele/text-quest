@@ -160,6 +160,8 @@ class TextQuestGame:
 
         # Score tracking (if i feel like it, might delete)__________________________________________________________
         self.score = 0
+        self.made_mistake = False
+
 
     def safe_load_image(self, path):
         try:
@@ -222,12 +224,14 @@ class TextQuestGame:
             self.correct_answered = True
             self.feedback_text = lesson["right_msg"]
             self.feedback_color = FEEDBACK_GOOD
-            self.score += 1
+            if not self.made_mistake:
+                self.score += 1
             self.correct_sound.play()
         else:
             self.correct_answered = False
             self.feedback_text = lesson["wrong_msg"]
             self.feedback_color = FEEDBACK_BAD
+            self.made_mistake = True
             self.wrong_sound.play()
 
     def advance_lesson(self):
@@ -236,6 +240,7 @@ class TextQuestGame:
         self.correct_answered = False
         self.feedback_text = ""
         self.feedback_color = TEXT_COLOR
+        self.made_mistake = False
         if self.lesson_index >= len(LESSONS):
             self.state = "end"
 
