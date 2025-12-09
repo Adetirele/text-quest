@@ -149,7 +149,9 @@ class TextQuestGame:
         self.wrong_sound = pygame.mixer.Sound("incorrect sword clash.wav")
         self.final_good_sound = pygame.mixer.Sound("final fanfare good.wav")
         self.final_bad_sound = pygame.mixer.Sound("final fanfare bad.wav") 
-        self.played_intro_sound = False       
+        self.played_intro_sound = False
+        self.played_final_sound = False
+       
 
         # Game state
         self.state = "intro"          # intro, 4 lessons, end screenn
@@ -243,7 +245,8 @@ class TextQuestGame:
         self.made_mistake = False
         if self.lesson_index >= len(LESSONS):
             self.state = "end"
-
+            self.played_final_sound = False
+            
     def update(self, dt):
         pass
     def render(self):
@@ -314,7 +317,7 @@ class TextQuestGame:
         combined_rect.y = LEFT_TEXT_Y  
         self.screen.blit(combined_img, combined_rect)
 
-        if not pygame.mixer.get_busy():
+        if not self.played_final_sound:
             if self.score >= 3:
                 self.final_good_sound.play()
             else:
