@@ -10,10 +10,18 @@ LEFT_TEXT_X = 28          # left padding for text
 LEFT_TEXT_Y = 40          # top padding for text
 LEFT_TEXT_MAX_WIDTH = 380 # keep text on left half (avoid right-side knight)
 
+#piccies
 INTRO_IMAGE_PATH = "TQ Intro.png"
 TEACH_IMAGE_PATH = "TQ Teach.png"
 END_IMAGE_PATH   = "TQ End.png"
 QUEST_PATH  = "quest.ttf"
+
+#soundz
+INTRO_SOUND_PATH = "intro fanfare.mp3"
+CORRECT_SOUND_PATH = "correct fanfare.mp3"
+WRONG_SOUND_PATH = "incorrect sword clash.mp3"
+FINAL_GOOD_SOUND_PATH = "final fanfare good.mp3"
+FINAL_BAD_SOUND_PATH = "final fanfare bad.mp3"
 
 TEXT_COLOR = (0, 0, 0)      # black text
 FEEDBACK_GOOD = (40, 150, 60)
@@ -119,6 +127,7 @@ def render_wrapped(surface, text, font, color, x, y, max_width, line_spacing=6):
 class TextQuestGame:
     def __init__(self):
         pygame.init()
+        pygame.mixer.init()
         pygame.display.set_caption("Text Quest")
         self.screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         self.clock = pygame.time.Clock()
