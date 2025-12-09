@@ -143,6 +143,13 @@ class TextQuestGame:
         self.title_font = pygame.font.Font(QUEST_PATH, 24)
         self.feedback_font = pygame.font.Font(QUEST_PATH, 15)
 
+        # Load silly sounds
+        self.intro_sound = pygame.mixer.Sound("intro fanfare.mp3")
+        self.correct_sound = pygame.mixer.Sound("correct fanfare.mp3")
+        self.wrong_sound = pygame.mixer.Sound("incorrect sword clash.mp3")
+        self.final_good_sound = pygame.mixer.Sound("final fanfare good.mp3")
+        self.final_bad_sound = pygame.mixer.Sound("final fanfare bad.mp3")        
+
         # Game state
         self.state = "intro"          # intro, 4 lessons, end screenn
         self.lesson_index = 0
