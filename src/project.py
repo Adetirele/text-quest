@@ -218,7 +218,8 @@ class TextQuestGame:
             elif key == pygame.K_SPACE and self.correct_answered:
                 self.advance_lesson()
         elif self.state == "end":
-            pass
+            if key == pygame.K_r:
+                self.restart_game()
 
     def process_answer(self, choice, lesson):
         """Check answer and set feedback; lhlat progression until answer is right!!"""
@@ -309,6 +310,16 @@ class TextQuestGame:
         else:
             self.screen.fill((230, 230, 240))
 
+    def restart_game(self):
+        self.state = "intro"
+        self.lesson_index = 0
+        self.correct_answered = False
+        self.feedback_text = ""
+        self.feedback_color = TEXT_COLOR
+        self.score = 0
+        self.played_intro_sound = False
+        self.played_final_sound = False
+
         # Farewell text!!!! sad to see u go
         combined_text = f"Quest Complete!   Final score: {self.score}/{len(LESSONS)}"
         combined_img = self.title_font.render(combined_text, True, TEXT_COLOR)
@@ -323,6 +334,15 @@ class TextQuestGame:
             else:
                 self.final_bad_sound.play()
             self.played_final_sound = True
+
+        # restart text!! so glad u see u back
+        restart_msg = "Press R to restart"
+        restart_img = self.body_font.render(restart_msg, True, TEXT_COLOR)
+        restart_rect = restart_img.get_rect()
+        restart_rect.centerx = WINDOW_WIDTH // 2
+        restart_rect.y = WINDOW_HEIGHT - 40
+        self.screen.blit(restart_img, restart_rect)
+
 
 
 #main function
